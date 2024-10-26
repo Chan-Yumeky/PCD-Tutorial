@@ -1,8 +1,8 @@
 import open3d as o3d
 import matplotlib.pyplot as plt
 
-color_raw = o3d.io.read_image("./img/cat.jpg")
-depth_raw = o3d.io.read_image("./img/cat.jpg")
+color_raw = o3d.io.read_image("./img/input/rgb/rgb_image_0000.png")
+depth_raw = o3d.io.read_image("./img/input/depth/depth_image_0000.png")
 # 创建一个rgbd图像
 rgbd_image = o3d.geometry.RGBDImage.create_from_color_and_depth(color_raw, depth_raw)
 print(rgbd_image)
@@ -24,15 +24,3 @@ pcd = o3d.geometry.PointCloud.create_from_rgbd_image(
 # Flip it, otherwise the pointcloud will be upside down
 pcd.transform([[1, 0, 0, 0], [0, -1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1]])
 o3d.visualization.draw_geometries([pcd])
-
-
-# # image的读取与写入
-# img = o3d.io.read_image("../test_data/lena_color.jpg")
-# print(img)
-# '''
-# 输出：
-# Image of size 512x512, with 3 channels.
-# Use numpy.asarray to access buffer data.
-# '''
-# # 写入(这里是拷贝)一份新的image数据
-# o3d.io.write_image("copy_of_lena_color.jpg", img)
